@@ -1,13 +1,13 @@
 package com.pixel.domain;
 
 public class User {
-	/* 主键编号 */
+	/* 鐢ㄦ埛鍞竴缂栧彿 */
 	private String _id;
-	/* 用户账号 */
+	/* 鐢ㄦ埛璐﹀彿 */
 	private String account;
-	/* 用户昵称 */
+	/* 鐢ㄦ埛鏄电О */
 	private String nickname;
-	/* 账号密码 */
+	/* 鐢ㄦ埛瀵嗙爜 */
 	private String password;
 
 	public User() {

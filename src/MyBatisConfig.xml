@@ -17,6 +17,8 @@
 	<mappers>
 	    <!-- 注册你的数据库表映射文件 -->
 	    <mapper resource="com/pixel/mapping/UserMapper.xml"/>
+	    <!-- 不需要针对UserMapperInterface接口去编写具体的实现类代码 这个具体的实现类由MyBatis帮我们动态构建出来 -->
+	    <mapper class="com.pixel.mapping.UserMapperInterface"/>
 	</mappers>
 	
 </configuration>

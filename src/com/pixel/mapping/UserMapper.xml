@@ -15,8 +15,30 @@
 		resultType="me.gacl.domain.User"就表示
 		将查询结果封装成一个User类的对象返回 User类就是users表所对应的实体类 
 	-->
+	
 	<!-- 根据id查询得到一个user对象 -->
 	<select id="getUser" parameterType="String" resultType="com.pixel.domain.User">
 		select * from users where _id=#{_id}
 	</select>
+	
+	<!-- 创建用户(Create) -->
+    <insert id="addUser" parameterType="com.pixel.domain.User">
+        insert into users(_id,account,nickname,password) values(#{_id},#{account},#{nickname},#{password})
+   </insert>
+   
+    <!-- 删除用户(Remove) -->
+    <delete id="deleteUser" parameterType="String">
+        delete from users where _id=#{_id}
+    </delete>
+   
+    <!-- 修改用户(Update) -->
+    <update id="updateUser" parameterType="com.pixel.domain.User">
+         update users set account=#{account},nickname=#{nickname},password=#{password} where _id=#{_id}
+    </update>
+    
+     <!-- 查询全部用户-->
+    <select id="getAllUsers" resultType="com.pixel.domain.User">
+        select * from users
+    </select>
+    
 </mapper>
