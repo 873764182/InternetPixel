@@ -14,8 +14,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class MyBatisUtil {
 
 	public static SqlSessionFactory getSqlSessionFactory() {
-		InputStream is = MyBatisUtil.class.getClassLoader().getResourceAsStream("MyBatisConfig.xml");
-		return new SqlSessionFactoryBuilder().build(is);
+		return new SqlSessionFactoryBuilder()
+				.build(MyBatisUtil.class.getClassLoader().getResourceAsStream("MyBatisConfig.xml"));
 	}
 
 	public static SqlSession getSqlSession() {
