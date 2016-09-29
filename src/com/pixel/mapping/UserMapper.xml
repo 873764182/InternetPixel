@@ -17,7 +17,7 @@
 	-->
 	
 	<!-- 根据id查询得到一个user对象 -->
-	<select id="getUser" parameterType="String" resultType="com.pixel.domain.User">
+	<select id="getUser" parameterType="String" resultType="com.pixel.domain.User" resultMap="userResultmap">
 		select * from users where _id=#{_id}
 	</select>
 	
@@ -32,13 +32,21 @@
     </delete>
    
     <!-- 修改用户(Update) -->
-    <update id="updateUser" parameterType="com.pixel.domain.User">
+    <update id="updateUser" parameterType="com.pixel.domain.User" >
          update users set account=#{account},nickname=#{nickname},password=#{password} where _id=#{_id}
     </update>
     
      <!-- 查询全部用户-->
-    <select id="getAllUsers" resultType="com.pixel.domain.User">
+    <select id="getAllUsers" resultType="com.pixel.domain.User" resultMap="userResultmap">
         select * from users
     </select>
+    
+    <!-- 实体的属性与数据库字段的映射(主要是解决实体字段与数据库字段不一致的问题 Select语句可以使用) -->
+    <resultMap type="com.pixel.domain.User" id="userResultmap">
+        <id property="_id" column="_id"/>
+        <result property="account" column="account"/>
+        <result property="nickname" column="nickname"/>
+        <result property="password" column="password"/>
+    </resultMap>
     
 </mapper>

@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+<!-- 配置文件有先后顺序要求 使用要注意 
+	properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,plugins?,environments?,databaseIdProvider?,mappers? 
+	-->
+    
+    <!-- 引入数据库信息配置文件 -->
+    <properties resource="database.properties" />
+	
+	<!-- 为实体对象设置别名 目的是为了简化书写长度 (简易不要使用  typeAliases标签有顺序要求 尽量放在最前面) -->
+	<!-- <typeAliases>
+	           指定某一个类的别名
+	    <typeAlias type="com.pixel.domain.User" alias="_User"/>
+	    
+	           把指定包下的类都加上别名(就去可以直接用对象名 而不用再写全路径包名了,比如com.pixel.domain.User这个实体类的别名就会被设置成User) 
+	    <package name="com.pixel.domain"/>
+	</typeAliases> -->
+    
+    <!-- 配置数据库环境 -->
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<!-- 配置数据库连接信息 -->
 			<dataSource type="POOLED">
-				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/internet_pixel" />
-				<property name="username" value="root" />
-				<property name="password" value="1234" />
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
 			</dataSource>
 		</environment>
 	</environments>
 	
 	<mappers>
-	    <!-- 注册你的数据库表映射文件 -->
+	   	<!--  注册你的数据库表映射文件 -->
 	    <mapper resource="com/pixel/mapping/UserMapper.xml"/>
-	    <!-- 不需要针对UserMapperInterface接口去编写具体的实现类代码 这个具体的实现类由MyBatis帮我们动态构建出来 -->
+		<!-- 不需要针对UserMapperInterface接口去编写具体的实现类代码 这个具体的实现类由MyBatis帮我们动态构建出来 -->
 	    <mapper class="com.pixel.mapping.UserMapperInterface"/>
 	</mappers>
 	

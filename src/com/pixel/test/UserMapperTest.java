@@ -1,4 +1,4 @@
-package com.pixel.mapping;
+package com.pixel.test;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 import com.pixel.domain.User;
+import com.pixel.mapping.UserMapperInterface;
 import com.pixel.utils.MyBatisUtil;
 
 public class UserMapperTest {

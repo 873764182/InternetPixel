@@ -1,5 +1,11 @@
 package com.pixel.domain;
 
+/**
+ * 用户
+ * 
+ * @author Administrator
+ *
+ */
 public class User {
 	/* 用户唯一编号 */
 	private String _id;

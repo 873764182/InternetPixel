@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pixel.mapping.UserAttributeMapping">
+
+	<!-- 一对一查询 方式一 -->
+	<select id="getUserAttribute" parameterType="String" resultMap="UserResultMap">
+		select * from Users u, UserAttribute ua where u._id=ua._id and
+		u._id=#{_id}
+	</select>
+	<resultMap type="com.pixel.domain.User" id="UserResultMap">
+		<id property="_id" column="_id" />
+		<result property="account" column="account" />
+		<result property="nickname" column="nickname" />
+		<result property="password" column="password" />
+		<association property="userAttribute" javaType="com.pixel.domain.UserAttribute">
+			<id property="_id" column="_id" />
+			<result property="user_id" column="user_id" />
+			<result property="attribute" column="attribute" />
+			<result property="value" column="value" />
+		</association>
+	</resultMap>
+
+	<!-- 一对一查询 方式二 -->
+	<select id="getUserAttribute2" parameterType="String" resultMap="">
+		select * from Users where _id=#{_id}
+	</select>
+	<resultMap type="com.pixel.domain.User" id="UserResultMap2">
+		<id property="_id" column="_id" />
+		<result property="account" column="account" />
+		<result property="nickname" column="nickname" />
+		<result property="password" column="password" />
+		<association property="attribute" column="_id"
+			select="getUserAttributeC" />
+	</resultMap>
+	<select id="getUserAttributeC" parameterType="String"
+		resultType="com.pixel.domain.UserAttribute">
+		select * from UserAttribute where _id=#{_id}
+	</select>
+</mapper>
