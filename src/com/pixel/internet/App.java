@@ -14,7 +14,7 @@ import com.pixel.internet.service.BaseService;
 public class App {
 
 	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("springContext.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 		BaseService base = (BaseService) context.getBean("BaseService");
 		base.testMethod("测试");
 	}
