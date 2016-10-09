@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
          http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
          http://www.springframework.org/schema/context
          http://www.springframework.org/schema/context/spring-context-4.1.xsd">
-	
+
 	<!-- 扫描指定包下的所有带@Controller标签的类 自动转为控制器 也不需要实现Controller接口 -->
 	<context:component-scan base-package="com.pixel.internet.controller" />
 
-	<!-- 页面目录配置 配置Spring的View所在目录 配置了目录与后缀 就可以直接写问价名就可以了-->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- 页面目录配置 配置Spring的View所在目录 配置了目录与后缀 就可以直接写问价名就可以了 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- 前缀(目录) -->
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<!-- 后缀(类型) -->
@@ -20,18 +22,11 @@
 	</bean>
 
 	<!-- 配置Url与Action的映射 使用了上面的自动扫描 就不再需要手动配置url对应控制器 结合@RequestMapping就可以配置路径 -->
-	<!-- <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-		<property name="mappings">
-			<props>
-				<prop key="/index.do">IndexController</prop>
-			</props>
-		</property>
-	</bean> -->
+	<!-- <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"> 
+		<property name="mappings"> <props> <prop key="/index.do">IndexController</prop> 
+		</props> </property> </bean> -->
 
 	<!-- 配置一个Action 对应的View是index.html -->
-	<!-- <bean id="IndexController" class="com.pixel.internet.controller.IndexController">
-		<property name="view">
-			<value>index</value>
-		</property>
-	</bean> -->
+	<!-- <bean id="IndexController" class="com.pixel.internet.controller.IndexController"> 
+		<property name="view"> <value>index</value> </property> </bean> -->
 </beans>
